@@ -1,0 +1,41 @@
+- Name 
+
+-Django env
+	- django pillow djangorestframework
+- Vuejs env
+	- vueproject.txt
+	- change language dir='rtl'
+	- 
+-Django:
+	- create app customuser
+		- user in gmail
+        - user rating
+		- user receive
+        - user donnate
+        - user two
+	- create app service
+        - category
+        - country
+        - service
+        - request ratache a user
+    - create messagery
+    - create app vue template
+
+-Vuejs:
+    - create a page vue with a laster-requests
+    - create a page vue with a laster-services
+        - create a category page
+        - create a page for donations
+        - create a request page
+        - create a messaging page
+
+
+
+
+
+
+
+
+-deploy:
+    - Django in server
+    - vue in netlify
