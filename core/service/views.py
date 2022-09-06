@@ -4,6 +4,7 @@ from service.models import CategoryService, Service
 from .serializer import CategoryServiceSerializer, ServiceSerializer
 from rest_framework.response import Response
 from django.views import View
+from rest_framework.views import APIView
 
 class AllServiceView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -12,12 +13,11 @@ class AllServiceView(generics.ListAPIView):
     serializer_class = ServiceSerializer
 
 
-class LatestServiceView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
-    def get_queryset(self):
-        return super().get_queryset()[0:8]
+class LatestServiceView(APIView):
+    def get(self, requset, format=None):
+        service = Service.objects.all()
+        serializer = ServiceSerializer(service, many=True)
+        return Response(serializer.data)
 
 
 

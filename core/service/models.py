@@ -9,9 +9,12 @@ class CategoryService(models.Model):
         return self.name
 
 
+    
+    
+
 
 class Service(models.Model):
-    category = models.ManyToManyField(CategoryService, related_name='prod')
+    category = models.ForeignKey(CategoryService, related_name='prod', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
@@ -24,6 +27,8 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
-    def slug(self):
-        return self.pk
+
+    def get_absolute_url(self):
+        return f"service/{self.category}/{self.pk}"
+    
     

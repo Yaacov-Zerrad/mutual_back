@@ -1,7 +1,9 @@
 - Name 
 
 -Django env
-	- django pillow djangorestframework
+	- django pillow djangorestframework django-cors-headers
+	
+	-django-cors-headers = the permission for host
 - Vuejs env
 	- vueproject.txt
 	- change language dir='rtl'
