@@ -1,22 +1,44 @@
 from django.shortcuts import render
 from rest_framework import generics, status, permissions
 from service.models import CategoryService, Service
-from .serializer import CategoryServiceSerializer, ServiceSerializer
+from .serializer import CategoryNameSerializer, CategoryServiceSerializer, ServiceSerializer
 from rest_framework.response import Response
 from django.views import View
 from rest_framework.views import APIView
+from django.http import Http404
+
+
+
 
 class AllServiceView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
+class CategoryServiceView(generics.ListAPIView):
+    queryset = CategoryService.objects.all()
+    serializer_class = CategoryNameSerializer
+   
+
+class OneCategoryServiceView(APIView):
+    def get_object(self, category_slug):
+        try:
+            return CategoryService.objects.get(slug=category_slug)
+        except Service.DoesNotExist:
+            raise Http404
+        
+    def get(self, request, category_slug,  format=None):
+        category = self.get_object(category_slug)
+        category = Service.objects.filter(category=category)
+        serializer = ServiceSerializer(category, many=True)
+        return Response(serializer.data)
+
+
 
 class LatestServiceView(APIView):
-    def get(self, requset, format=None):
+    def get(self, request, format=None):
         service = Service.objects.all()
-        serializer = ServiceSerializer(service, many=True)
+        serializer = CategoryNameSerializer(service, many=True)
         return Response(serializer.data)
 
 

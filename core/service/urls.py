@@ -7,4 +7,6 @@ urlpatterns = [
     path('detail/<int:pk>', views.DetailServiceView.as_view(),),
     path('update/<int:pk>/', views.UpdateServiceView.as_view(),),
     path('delete/<int:pk>/', views.DeleteServiceView.as_view(),),
+    path('category/', views.CategoryServiceView.as_view(),),
+    path('category/<slug:category_slug>/', views.OneCategoryServiceView.as_view(),),
 ]
