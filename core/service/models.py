@@ -11,6 +11,9 @@ class CategoryService(models.Model):
     def get_absolute_url(self):
         return f"/{self.slug}"
     
+    def get_name(self):
+        return "xfgh"
+    
 
 
     

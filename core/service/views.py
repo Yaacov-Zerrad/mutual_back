@@ -36,11 +36,12 @@ class OneCategoryServiceView(APIView):
 
 
 class LatestServiceView(APIView):
-    def get(self, request, format=None):
-        service = Service.objects.all()
-        serializer = CategoryNameSerializer(service, many=True)
-        return Response(serializer.data)
-
+    # def get(self, request, format=None):
+    #     service = Service.objects.all()
+    #     serializer = ServiceSerializer(service, many=True)
+    #     return Response(serializer.data)
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
 
 class DetailServiceView(generics.RetrieveAPIView):
