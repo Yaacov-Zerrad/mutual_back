@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.views import View
 from rest_framework.views import APIView
 from django.http import Http404
-
+from drf_yasg.utils import swagger_auto_schema
 
 
 
@@ -52,8 +52,16 @@ class DetailServiceView(generics.RetrieveAPIView):
 
 class CreateServiceView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
-    queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+    queryset = Service.objects.all()
+    
+    
+    @swagger_auto_schema(operation_description='Create a news service',
+                         responses={200:ServiceSerializer})
+    def post(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    
 
 
 class UpdateServiceView(generics.UpdateAPIView):

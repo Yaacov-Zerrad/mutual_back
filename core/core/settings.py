@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
@@ -87,22 +87,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 DATABASES = {
-	'default': {
-		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME': 'mutual',
-		'USER':'yaacov',
-		'PASSWORD':'20Myriam',
-		'HOST':  'localhost',
-		'POST':'5432',
-	}
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+   }
 }
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
+# 		'NAME': 'mutual',
+# 		'USER':'yaacov',
+# 		'PASSWORD':'20Myriam',
+# 		'HOST':  'localhost',
+# 		'POST':'5432',
+# 	}
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -150,3 +150,14 @@ CORS_ORIGIN_ALLOW_ALL=True
 # CORS_ALLOWED_ORIGINS = [
 #     'http://127.0.0.1:8080','http://127.0.0.1:8080/',
 # ]
+
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': '/admin/login/',
+    'LOGOUT_URL': '/admin/logout/'
+}
+
+
+DJOSER = {
+    'LOGIN_FIELD': 'email'
+}
